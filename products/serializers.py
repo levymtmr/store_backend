@@ -8,13 +8,18 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ("__all__")
 
+class ProductSearchSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = ("__all__")
 
 class StorageSerializer(serializers.ModelSerializer):
     product = serializers.SlugRelatedField(queryset=Product.objects.all(), slug_field='name')
 
     class Meta:
         model = Storage
-        fields = ("id", "product", "amount", "total", "date_storage")
+        fields = ("id", "product", "amount", "total", "date_storage", "price")
 
 
 class SellSerializer(serializers.ModelSerializer):

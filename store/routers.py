@@ -3,6 +3,7 @@ from products.views import ProductViewSet, StorageViewSet, SellViewSet, ClientVi
 
 router = DefaultRouter()
 
+# router.register(r'produtcs_search', ProdutcListView.as_view())
 router.register(r'clients', ClientViewSet, base_name="client")
 router.register(r'products', ProductViewSet, base_name="product")
 router.register(r'storages', StorageViewSet, base_name="storage")

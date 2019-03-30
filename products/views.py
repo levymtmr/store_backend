@@ -1,12 +1,29 @@
-from django.shortcuts import render
+from django_filters import FilterSet, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
+from rest_framework.filters import OrderingFilter, SearchFilter
 from products.models import Product, Storage, Sell, Client, Cart
-from products.serializers import ProductSerializer, StorageSerializer, SellSerializer, ClientSerializer, CartSerializer
+from products.serializers import (ProductSerializer, StorageSerializer,
+                                  SellSerializer, ClientSerializer, CartSerializer)
+
+
+class ProductFilter(FilterSet):
+    name = filters.CharFilter('name')
+
+    class Meta:
+        model = Product
+        fields = ("__all__")
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filter_class = ProductFilter
+    filter_fields = ('name',)
+    ordering_fields = ('name',)
+    ordering = ('name')
+    search_fields = ('name','name')
 
 
 class StorageViewSet(viewsets.ModelViewSet):

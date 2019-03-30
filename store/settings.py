@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'products'
+    'guardian',
+    'django_filters',
+    'products',
+
 ]
 
 MIDDLEWARE = [
@@ -74,6 +77,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # default
+    'guardian.backends.ObjectPermissionBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

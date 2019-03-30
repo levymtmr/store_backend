@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Client(models.Model):
     name = models.CharField(max_length=200)
     phone = models.CharField(max_length=15)
@@ -7,6 +8,7 @@ class Client(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -16,6 +18,8 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        unique_together = ('name',)
 
 class Storage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -24,6 +28,10 @@ class Storage(models.Model):
 
     def __str__(self):
         return self.product.name
+
+    @property
+    def price(self):
+        return self.product.price
 
     @property
     def total(self):
@@ -44,6 +52,7 @@ class Sell(models.Model):
     def save(self, *args, **kwargs):
         self.update_storage()
         return super().save(*args, **kwargs)
+
 
 class Cart(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
