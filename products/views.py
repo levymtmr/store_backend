@@ -4,7 +4,8 @@ from rest_framework import viewsets
 from rest_framework.filters import OrderingFilter, SearchFilter
 from products.models import Product, Storage, Sell, Client, Cart
 from products.serializers import (ProductSerializer, StorageSerializer,
-                                  SellSerializer, ClientSerializer, CartSerializer)
+                                  SellSerializer, ClientSerializer, CartSerializer, SellListSerializer)
+from rest_framework.response import Response
 
 
 class ProductFilter(FilterSet):
@@ -33,6 +34,12 @@ class StorageViewSet(viewsets.ModelViewSet):
 class SellViewSet(viewsets.ModelViewSet):
     queryset = Sell.objects.all()
     serializer_class = SellSerializer
+
+    def list(self, request):
+        queryset = Sell.objects.all()
+        serializer = SellListSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 class ClientViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()

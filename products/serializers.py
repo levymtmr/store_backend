@@ -22,6 +22,11 @@ class StorageSerializer(serializers.ModelSerializer):
         fields = ("id", "product", "amount", "total", "date_storage", "price")
 
 
+class SellListSerializer(serializers.Serializer):
+    products = serializers.CharField(read_only=True)
+    amount = serializers.IntegerField(read_only=True)
+
+
 class SellSerializer(serializers.ModelSerializer):
     # products = serializers.ManyRelatedField(child_relation="products")
     # products = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), many=True)

@@ -40,15 +40,15 @@ class Storage(models.Model):
 
 
 class Sell(models.Model):
-    products = models.ForeignKey(Storage, on_delete=models.CASCADE)
+    products = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=6, decimal_places=2)
 
     def update_storage(self):
         pk = self.products.id
-        item_amout = Storage.objects.get(id=pk).amount
+        item_amout = Product.objects.get(id=pk).amount
         new_amount = item_amout - self.amount
         if item_amout > 0 and new_amount > 0:
-            Storage.objects.filter(id=pk).update(amount=new_amount)
+            Product.objects.filter(id=pk).update(amount=new_amount)
 
     def save(self, *args, **kwargs):
         self.update_storage()
