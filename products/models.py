@@ -40,8 +40,18 @@ class Storage(models.Model):
 
 
 class Sell(models.Model):
+
+    UNIT_CHOICES = (
+        ('KG', 'kg'),
+        ('UND', 'und'),
+        ('SC', 'sc')
+    )
+    date = models.DateField(auto_now=True)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
     products = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=6, decimal_places=2)
+    unit = models.CharField(max_length=3, choices=UNIT_CHOICES, default='UND')
+    price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def update_storage(self):
         pk = self.products.id
@@ -54,10 +64,17 @@ class Sell(models.Model):
         self.update_storage()
         return super().save(*args, **kwargs)
 
+    
 
 class Cart(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    sell_itens = models.ForeignKey(Sell, on_delete=models.CASCADE, related_name="sell_itens")
+    sell_itens = models.ManyToManyField(Sell, related_name="sell_itens")
+
+
+
+    def save(self, *args, **kwargs):
+        print("sell itens", self.sell_itens)
+        return super().save(*args, **kwargs)
 
     # def empty_cart(self, items):
     #     validate = False
@@ -77,3 +94,8 @@ class Cart(models.Model):
     # def save(self, *args, **kwargs):
     #     if self.empty_cart(self.buy_itens):
     #         return super().save(*args, **kwargs)
+
+
+
+
+

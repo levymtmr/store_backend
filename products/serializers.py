@@ -23,17 +23,19 @@ class StorageSerializer(serializers.ModelSerializer):
 
 
 class SellListSerializer(serializers.Serializer):
+    date = serializers.CharField(read_only=True)
     products = serializers.CharField(read_only=True)
+    client = serializers.CharField(read_only=True)
     amount = serializers.IntegerField(read_only=True)
+    unit = serializers.CharField(read_only=True)
+    price = serializers.IntegerField(read_only=True)
 
 
 class SellSerializer(serializers.ModelSerializer):
-    # products = serializers.ManyRelatedField(child_relation="products")
-    # products = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), many=True)
 
     class Meta:
         model = Sell
-        fields = ("amount", "products")
+        fields = ("__all__")
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -48,4 +50,10 @@ class CartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        fields = ("client", "sell_itens")
+        fields = ("__all__")
+
+class CartListSerializer(serializers.Serializer):
+    client = serializers.CharField(read_only=True)
+    sell_itens = SellListSerializer()
+
+
