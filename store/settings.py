@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'guardian',
     'django_filters',
+    'django_extensions',
     'products',
+    'sells',
+    'cart',
+    'storage',
+    'client'
 
 ]
 
