@@ -5,7 +5,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-
+    
     def __str__(self):
         return self.name
 
@@ -13,8 +13,9 @@ class Product(models.Model):
         unique_together = ('name',)
 
     def save(self, *args, **kwargs):
-        print("sell itens", self.sell_itens)
         return super().save(*args, **kwargs)
+
+
 
     # def empty_cart(self, items):
     #     validate = False

@@ -26,6 +26,9 @@ class Sell(models.Model):
 
         def save(self, *args, **kwargs):
             self.update_amount()
+            # print("kweadsdasd", args)
+            # self.client = Client.objects.filter(name=self.client)[0].pk
+            # self.products_storage = Product.objects.filter(name=self.products_storage)[0].pk
             return super().save(*args, **kwargs)
 
         def __str__(self):

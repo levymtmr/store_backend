@@ -12,13 +12,17 @@ class CartViewSet(viewsets.ModelViewSet, mixins.CreateModelMixin):
     serializer_class = CartListModelSerializer
 
     def list(self, request):
+        '''
+        Retorna todos os carrinhos criados
+        '''
         serializer = CartSerializer(self.queryset, many=True)
         return Response(serializer.data)
 
-    # def create(self, request):
-    #     seralizer = CartListModelSerializer(Sell.objects.all(), many=True)
-    #     print(seralizer.data)
-    #     return Response(seralizer.data)
+    def create(self, request):
+        '''
+        Cria um carrinho relacionado a um cliente já cadastrado
+        '''
+        pass
 
 
 

@@ -9,6 +9,7 @@ class SellListSerializer(serializers.Serializer):
     amount = serializers.IntegerField(read_only=True)
     unit = serializers.CharField(read_only=True)
     price = serializers.IntegerField(read_only=True)
+    products_storage = serializers.CharField(read_only=True)
 
 
 class SellSerializer(serializers.ModelSerializer):
@@ -16,3 +17,6 @@ class SellSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sell
         fields = ("__all__")
+
+
+

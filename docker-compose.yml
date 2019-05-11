@@ -1,8 +1,12 @@
 version: '3'
 
 services:
-  db:
+  db-store-petgula:
     image: postgres
+    ports:
+      - "6432:5432"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
   store_backend :
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -11,4 +15,4 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - db-store-petgula

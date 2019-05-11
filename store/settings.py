@@ -25,7 +25,7 @@ SECRET_KEY = 'd)$!zv_tvj*rvf*e^b0l_mw)i*sev0ub@f5kugd4x+igkemwrz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'guardian',
     'django_filters',
     'django_extensions',
+    'drf_yasg',
     'products',
     'sells',
     'cart',
@@ -97,9 +98,10 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'petgula',
     }
 }
+
 
 
 # Password validation
