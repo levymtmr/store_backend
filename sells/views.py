@@ -14,7 +14,7 @@ class SellViewSet(viewsets.ModelViewSet, mixins.CreateModelMixin):
     #     return Response(serializer.data)
 
     def list(self, request):
-        serializer = SellListSerializer(Sell.objects.all(), many=True)
+        serializer = SellListSerializer(Sell.objects.all().order_by("date").reverse(), many=True)
         return Response(serializer.data)
 
 
