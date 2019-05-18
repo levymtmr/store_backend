@@ -2,9 +2,17 @@ from django.db import models
 
 
 class Product(models.Model):
+    UNIT_CHOICES = (
+        ('Kg', 'kg'),
+        ('UND', 'und'),
+        ('SC', 'sc')
+    )
+
     name = models.CharField(max_length=200)
     date = models.DateField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    unit = models.CharField(max_length=3, choices=UNIT_CHOICES, default='UND')
+    price = models.DecimalField(max_digits=7, decimal_places=3)
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
     
     def __str__(self):
         return self.name
