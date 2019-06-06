@@ -11,5 +11,5 @@ class BillViewSet(viewsets.ModelViewSet):
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
-    search_fields = ('^category', '^payday')
+    search_fields = ('^category', '^payday', '^description')
 
