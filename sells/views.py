@@ -15,10 +15,10 @@ class SellViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ['client__name']
 
-    # def create(self, request, *args, **kwargs):
-    #     serializer = SellSerializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     return Response(serializer.data)
+    def create(self, request, *args, **kwargs):
+        serializer = SellSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
     #
     # def list(self, request):
     #     serializer = SellListSerializer(Sell.objects.all().order_by("date", "id").reverse(), many=True)
