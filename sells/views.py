@@ -18,6 +18,7 @@ class SellViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = SellSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
     #
     # def list(self, request):
