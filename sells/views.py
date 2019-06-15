@@ -20,10 +20,10 @@ class SellViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
-    #
-    # def list(self, request):
-    #     serializer = SellListSerializer(Sell.objects.all().order_by("date", "id").reverse(), many=True)
-    #     return Response(serializer.data)
+
+    def list(self, request):
+        serializer = SellListSerializer(Sell.objects.all().order_by("date", "id").reverse(), many=True)
+        return Response(serializer.data)
 
     # @action(methods=['get'], detail=True, url_path="buscar", url_name="buscar")
     # def buscar(self, request):
