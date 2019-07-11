@@ -6,6 +6,7 @@ from products.views import ProductViewSet
 from storage.views import StorageViewSet
 from sells.views import SellViewSet
 from cart.views import CartViewSet
+from users.views import CreateUserView
 
 router = DefaultRouter()
 
