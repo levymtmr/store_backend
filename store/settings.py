@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'guardian',
     'django_filters',
     'django_extensions',
-    'drf_yasg',
     'products',
     'sells',
     'cart',
