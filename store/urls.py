@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from store.routers import router
-
+from users.views import CreateUserView
 from rest_framework import permissions
 
 
@@ -25,4 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
+    path(r'register/', CreateUserView.as_view(), name="usuarios")
 ]
