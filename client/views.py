@@ -8,14 +8,14 @@ from client.serializers import ClientSerializer
 
 
 class ClientViewSet(viewsets.ModelViewSet):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+    # authentication_classes = (SessionAuthentication, BasicAuthentication)
+    # permission_classes = (IsAuthenticated,)
 
-    def get(self, request, format=None):
-        content = {
-            'user': request.user,  # `django.contrib.auth.User` instance.
-            'auth': request.auth,  # None
-        }
-        return Response(content)
+    # def get(self, request, format=None):
+    #     content = {
+    #         'user': request.user,  # `django.contrib.auth.User` instance.
+    #         'auth': request.auth,  # None
+    #     }
+    #     return Response(content)
