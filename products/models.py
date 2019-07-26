@@ -1,11 +1,15 @@
 from django.db import models
+from category.models import Category
 
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=7, decimal_places=3)
     date = models.DateField()
-    # amount = models.DecimalField(max_digits=6, decimal_places=2)
+    description = models.CharField(max_length=250)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    picture = models.ImageField()
+    quantity = models.DecimalField(max_digits=6, decimal_places=2)
     
     def __str__(self):
         return self.name
@@ -17,25 +21,6 @@ class Product(models.Model):
         return super().save(*args, **kwargs)
 
 
-
-    # def empty_cart(self, items):
-    #     validate = False
-    #     if items.count != 0:
-    #         validate = True
-    #     return validate
-
-
-    # @property
-    # def total(self):
-    #     sum = 0
-    #     for item in self.buy_itens:
-    #         sum += item.products.price
-    #     return sum
-
-
-    # def save(self, *args, **kwargs):
-    #     if self.empty_cart(self.buy_itens):
-    #         return super().save(*args, **kwargs)
 
 
 

@@ -45,11 +45,10 @@ INSTALLED_APPS = [
     'django_filters',
     'django_extensions',
     'products',
-    'sells',
-    'cart',
-    'storage',
-    'client',
-    'bills'
+    'category',
+    'payment',
+    'order',
+    'order_details'
 
 ]
 
