@@ -8,7 +8,7 @@ class Product(models.Model):
     date = models.DateField()
     description = models.CharField(max_length=250)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    picture = models.ImageField()
+    # picture = models.ImageField()
     quantity = models.DecimalField(max_digits=6, decimal_places=2)
     
     def __str__(self):
