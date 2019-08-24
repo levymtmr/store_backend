@@ -3,6 +3,9 @@ from order.models import Order
 from order_details.models import OrderDetail
 
 
+
+
+
 class OrderDetailSerializer(serializers.Serializer):
     products = serializers.CharField(required=False)
     price = serializers.CharField(required=False)
@@ -12,8 +15,14 @@ class OrderDetailSerializer(serializers.Serializer):
     user = serializers.CharField(required=False)
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class GetOrderSerializer(serializers.ModelSerializer):
     order_details = OrderDetailSerializer(many=True)
+
+    class Meta:
+        model = Order
+        fields = ("order_date", "ship_date", "payment", "active", "user", "order_details")
+
+class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order

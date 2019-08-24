@@ -12,7 +12,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     authentication_classes = (TokenAuthentication, )
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ('^name', '^date')
 
